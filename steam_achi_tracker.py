@@ -1,3 +1,9 @@
+# todo 
+# make it so the user can enter in an achievement name - DONE!
+# make it so a user can enter in the steam user ID - DONE!
+# make it so the user can switch games - 
+# make it into a module so that others can use it - 
+
 # Steam achievement tracker
 # christopher naughton
 
@@ -7,14 +13,24 @@ import urllib2
 from urllib2 import	urlopen
 from json import load
 
+# get information from the user: 
+print "If you need help finding your steam Id please visit http://steamidfinder.com/"
+steam_user_id = raw_input("Please enter your Steam User Id: ")
+steam_app_id = raw_input("Please enter the application Id for the game you want to track: ")
+steam_achi_name = raw_input("Please enter the name of the achievement you want to track: ")
+
+
+
 # for reference http://api.steampowered.com/ISteamUserStats/GetPlayerAchievements/v0001/?appid=214560&key=27B902676079AB5FE078B4FC58E52C9C&steamid=76561198014694823
 # begin create steam API URL
 steam_api_url = "http://api.steampowered.com/ISteamUserStats/GetPlayerAchievements/v0001/?appid=214560"
 
 # supply values: api key, user_id, and app_id
 steam_api_key = "27B902676079AB5FE078B4FC58E52C9C"
-steam_user_id = "76561198014694823"
-steam_app_id = "214560"
+# steam_user_id = "76561198014694823"
+# steam_app_id = "214560"
+steam_user_id = steam_user_id
+steam_app_id = steam_app_id
 
 # add items to the URL
 steam_api_url += "&key=27B902676079AB5FE078B4FC58E52C9C"
@@ -33,18 +49,15 @@ info = parse_json['playerstats']['achievements']
 for i in range(0, len(info)):
 	#print info[i]['apiname'],info[i]['achieved']
 	
-	# if the achievement is as follows 
-	if info[i]['apiname'] == 'trickster' and info[i]['achieved'] == 1:
+	# if the achievement is a match for the following:
+	if info[i]['apiname'] == steam_achi_name and info[i]['achieved'] == 1:
 		print "Looks like you can buy a new game!"
 	# else if it is not a match just print white space
 	else:
-	   		info[i]['apiname'] != 'trickster' and info[i]['achieved'] == 0
-			print " "
+	   		info[i]['apiname'] == steam_achi_name and info[i]['achieved'] == 0
+			print "Keep working on your backlog!"
 		
-# TODO: 
-# make it so the user can enter in user_id, achievement name and setting
-# do a better job dealing with the else print 
-# can this be made into a useful module?
+
 	
 	
 	

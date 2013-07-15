@@ -14,7 +14,10 @@ from urllib2 import	urlopen
 from json import load
 
 # get information from the user: 
+print "*****************************************************************************"
 print "If you need help finding your steam Id please visit http://steamidfinder.com/"
+print "*****************************************************************************"
+print ""
 steam_user_id = raw_input("Please enter your Steam User Id: ")
 steam_app_id = raw_input("Please enter the application Id for the game you want to track: ")
 steam_achi_name = raw_input("Please enter the name of the achievement you want to track: ")

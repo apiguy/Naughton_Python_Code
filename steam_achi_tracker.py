@@ -46,19 +46,16 @@ steam_response = urllib2.urlopen(steam_api_url)
 parse_json = json.loads(steam_response.read())
 
 # drill down into the json data	
-info = parse_json['playerstats']['achievements']
+achievements = parse_json['playerstats']['achievements']
 
 # setup so you can read through the specific details
-for i in range(0, len(info)):
-	#print info[i]['apiname'],info[i]['achieved']
-	
-	# if the achievement is a match for the following:
-	if info[i]['apiname'] == steam_achi_name and info[i]['achieved'] == 1:
-		print "Looks like you can buy a new game!"
-	# else if it is not a match just print white space
-	else:
-	   		info[i]['apiname'] == steam_achi_name and info[i]['achieved'] == 0
-			print "Keep working on your backlog!"
+for info in achievements:
+    # if the achievement is a match for the following:
+    if info['apiname'] == steam_achi_name and info['achieved']:
+        print "Looks like you can buy a new game!"
+        break
+else:
+    print "Keep working on your backlog!"
 		
 
 	
